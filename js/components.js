@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("navbar", "/components/navbar.html");
-  loadComponent("footer", "/components/footer.html");
+  loadComponent("navbar", "/components/navbar.html", true);
+  loadComponent("footer", "/components/footer.html", false);
 });
 
-function loadComponent(id, file) {
+function loadComponent(id, file, isNavbar = false) {
   fetch(file)
     .then((res) => res.text())
     .then((data) => {
-      document.getElementById(id).innerHTML = data;
-      setupMobileMenu();
-      setActiveLink();
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      element.innerHTML = data;
+
+      if (isNavbar) {
+        setupMobileMenu();
+        setActiveLink();
+      }
     })
     .catch((error) => console.error(`Error loading ${file}:`, error));
-
-    
 }
 
 function setupMobileMenu() {
@@ -23,14 +27,14 @@ function setupMobileMenu() {
   if (!menuBtn || !navLinks) return;
 
   menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
     menuBtn.classList.toggle("active");
+    navLinks.classList.toggle("active");
   });
 
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
       menuBtn.classList.remove("active");
+      navLinks.classList.remove("active");
     });
   });
 }
@@ -46,9 +50,9 @@ function setActiveLink() {
   else if (path.includes("about")) current = "about";
   else if (path.includes("contact")) current = "contact";
 
-  const links = document.querySelectorAll(".nav-links a");
+  const links = document.querySelectorAll(".nav-links a, .nav-cta");
 
-  links.forEach(link => {
+  links.forEach((link) => {
     if (link.dataset.page === current) {
       link.classList.add("active-link");
     }
