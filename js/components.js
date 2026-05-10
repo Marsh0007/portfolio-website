@@ -18,12 +18,20 @@ function loadComponent(id, file) {
 
 function setupMobileMenu() {
   const menuBtn = document.getElementById("menuBtn");
-  const navLinks = document.querySelector(".nav-links");
+  const navLinks = document.getElementById("navLinks");
 
   if (!menuBtn || !navLinks) return;
 
   menuBtn.addEventListener("click", () => {
     navLinks.classList.toggle("active");
+    menuBtn.classList.toggle("active");
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuBtn.classList.remove("active");
+    });
   });
 }
 

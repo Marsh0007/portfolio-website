@@ -127,11 +127,15 @@ textarea {
 /* =========================================================
    NAVBAR
 ========================================================= */
+
+/* =========================================================
+   NAVBAR
+========================================================= */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(7, 17, 31, 0.75);
+  z-index: 1000;
+  background: rgba(7, 17, 31, 0.72);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
 }
@@ -145,8 +149,8 @@ textarea {
 
 .logo {
   font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-weight: 900;
+  letter-spacing: -0.7px;
 }
 
 .logo span {
@@ -178,12 +182,34 @@ textarea {
 .nav-links a.active-link::after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 2px;
+  left: 50%;
+  bottom: -9px;
+  width: 18px;
+  height: 3px;
   background: var(--primary);
-  border-radius: 10px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-whatsapp {
+  padding: 10px 16px;
+  border: 1px solid rgba(56, 214, 163, 0.35);
+  color: var(--primary);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.nav-whatsapp:hover {
+  background: rgba(56, 214, 163, 0.1);
+  transform: translateY(-2px);
 }
 
 .nav-cta {
@@ -191,16 +217,50 @@ textarea {
   background: var(--primary);
   color: #06101d !important;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.nav-cta:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
 }
 
 .menu-btn {
+  width: 42px;
+  height: 42px;
   display: none;
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 1.8rem;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
   cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 999px;
+  transition: 0.3s ease;
+}
+
+.menu-btn span:nth-child(2) {
+  margin: 5px 0;
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* =========================================================
@@ -1141,28 +1201,64 @@ textarea {
   }
 
   .logo {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .menu-btn {
-    display: block;
+    display: grid;
+  }
+
+  .nav-whatsapp,
+  .nav-cta {
+    display: none;
   }
 
   .nav-links {
     position: absolute;
     top: 68px;
-    left: 0;
-    width: 100%;
-    display: none;
+    left: 50%;
+    width: 92%;
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     padding: 24px;
-    background: rgba(7, 17, 31, 0.98);
-    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(circle at top right, rgba(56, 214, 163, 0.13), transparent 35%),
+      rgba(7, 17, 31, 0.97);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    transform: translateX(-50%) translateY(-18px);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.35s ease;
   }
 
   .nav-links.active {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .nav-links li,
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active-link {
+    background: rgba(56, 214, 163, 0.1);
+  }
+
+  .nav-links a.active-link::after {
+    display: none;
   }
 
   .footer-content {
@@ -1574,5 +1670,128 @@ textarea {
   .demo-card-body,
   .demo-custom-card {
     padding: 24px;
+  }
+}
+
+/* =========================================================
+   PREMIUM FOOTER
+========================================================= */
+.footer {
+  margin-top: 80px;
+  padding: 70px 0 24px;
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top left, rgba(56, 214, 163, 0.12), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(92, 124, 250, 0.12), transparent 35%),
+    rgba(7, 17, 31, 0.75);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.7fr 0.9fr 1fr;
+  gap: 42px;
+  align-items: start;
+}
+
+.footer-logo {
+  display: inline-flex;
+  margin-bottom: 18px;
+}
+
+.footer-brand p,
+.footer-cta p {
+  color: var(--muted);
+  max-width: 360px;
+  margin-bottom: 22px;
+}
+
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-socials a {
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: var(--primary);
+  border-color: rgba(56, 214, 163, 0.45);
+  transform: translateY(-3px);
+}
+
+.footer-links h4,
+.footer-cta h4 {
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  color: var(--muted);
+  margin-bottom: 10px;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.footer-cta {
+  padding: 24px;
+  border-radius: 26px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+}
+
+.footer-cta .btn {
+  padding: 12px 18px;
+}
+
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Footer Responsive */
+@media (max-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .footer {
+    padding: 52px 0 22px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .footer-cta {
+    padding: 22px;
   }
 }
