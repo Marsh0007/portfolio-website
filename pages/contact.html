@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | WebCraft Studio</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main>
+    <section class="page-hero">
+      <span class="hero-badge">Let’s Talk</span>
+      <h1>Tell us what kind of website your business needs.</h1>
+      <p>
+        Share your business type, website idea or demo you liked. We’ll suggest the best option.
+      </p>
+    </section>
+
+    <section class="contact-section container">
+      <div class="contact-info">
+        <h2>Start your website request</h2>
+        <p>
+          Whether you own a shop, restaurant, salon, clinic, bakery or rental business,
+          we can create a clean website that helps customers trust and contact you.
+        </p>
+
+        <div class="contact-box">
+          <span>Email</span>
+          <strong>gauravtiwari7485@gmail.com</strong>
+        </div>
+
+        
+
+        <a
+          href="https://wa.me/4915750112791?text=Hello%20WebCraft%20Studio,%20I%20want%20a%20website%20for%20my%20business."
+          target="_blank"
+          class="btn btn-primary"
+        >
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="business">Business Type</label>
+          <input type="text" id="business" placeholder="Restaurant, shop, salon, clinic..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="package">Interested Package</label>
+          <select id="package" required>
+            <option value="">Select a package</option>
+            <option value="Starter Website">Starter Website</option>
+            <option value="Business Website">Business Website</option>
+            <option value="Ordering System">Ordering System</option>
+            <option value="Not Sure">Not Sure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" placeholder="Tell us what you need..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Request</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/contact.js"></script>
+</body>
+</html>
